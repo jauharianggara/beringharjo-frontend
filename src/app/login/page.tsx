@@ -57,7 +57,7 @@ function LoginForm() {
           <div className="flex justify-center">
             <Image
               src="/logo.png"
-              alt="BMT Tumang Boyolali"
+              alt="BMT Beringharjo"
               width={240}
               height={76}
               className="h-auto"
@@ -116,7 +116,7 @@ function LoginForm() {
         </div>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} BMT Tumang Boyolali. All rights reserved.
+          &copy; {new Date().getFullYear()} BMT Beringharjo. All rights reserved.
         </p>
       </div>
     </div>

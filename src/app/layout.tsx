@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tumang Admin",
-  description: "Tumang Admin Panel",
+  title: "Beringharjo Admin",
+  description: "Beringharjo Admin Panel",
 };
 
 export default function RootLayout({

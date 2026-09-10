@@ -1,13 +1,4 @@
-const BASE_URL = (() => {
-  // Runtime detection: when accessed via public domain, use the public API URL
-  if (typeof window !== "undefined") {
-    const host = window.location.hostname;
-    if (host.includes("jagodigital.online")) {
-      return "https://tumang-api.jagodigital.online";
-    }
-  }
-  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:8082";
-})();
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8081";
 
 function getToken(): string | null {
   if (typeof document === "undefined") return null;

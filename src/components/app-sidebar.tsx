@@ -71,7 +71,7 @@ export function AppSidebar() {
           {/* Logo penuh (landscape) — tampil saat sidebar expanded */}
           <Image
             src="/logo.png"
-            alt="BMT Tumang"
+            alt="BMT Beringharjo"
             width={720}
             height={227}
             className="h-9 w-auto max-w-full object-contain group-data-[collapsible=icon]:hidden"
@@ -80,9 +80,9 @@ export function AppSidebar() {
           {/* Icon (kotak) — tampil saat sidebar collapsed */}
           <Image
             src="/icon.png"
-            alt="BMT Tumang"
-            width={437}
-            height={453}
+            alt="BMT Beringharjo"
+            width={192}
+            height={192}
             className="hidden size-8 object-contain group-data-[collapsible=icon]:flex"
           />
         </Link>
@@ -162,7 +162,7 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="sm" className="text-xs text-muted-foreground">
-              <span>© 2026 BMT Tumang Boyolali</span>
+              <span>© 2026 BMT Beringharjo</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

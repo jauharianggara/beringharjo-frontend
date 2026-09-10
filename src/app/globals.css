@@ -49,9 +49,9 @@
 }
 
 /*
-  BMT Tumang Boyolali — Brand Palette
-  Primary : Emerald Green  #2E7D32 (icon hijau)
-  Accent  : Gold           #C8A415 (icon emas)
+  BMT Beringharjo — Brand Palette
+  Primary : Deep Green  #006633 (logo hijau)
+  Accent  : Gold        #FDB813 (logo emas)
 */
 
 :root {
@@ -61,8 +61,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.497 0.135 146);
-  /* Green #2E7D32 */
+  --primary: oklch(0.46 0.11 162);
+  /* Deep green #006633 */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.96 0.02 95);
   /* Warm cream */
@@ -76,29 +76,29 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.90 0.01 90);
   --input: oklch(0.90 0.01 90);
-  --ring: oklch(0.497 0.135 146);
+  --ring: oklch(0.46 0.11 162);
   /* Primary green ring */
-  --chart-1: oklch(0.497 0.135 146);
+  --chart-1: oklch(0.46 0.11 162);
   /* Green */
-  --chart-2: oklch(0.78 0.14 85);
+  --chart-2: oklch(0.815 0.155 82);
   /* Gold */
-  --chart-3: oklch(0.55 0.09 146);
+  --chart-3: oklch(0.5 0.1 162);
   /* Dark green */
   --chart-4: oklch(0.65 0.12 85);
   /* Muted gold */
-  --chart-5: oklch(0.42 0.06 146);
+  --chart-5: oklch(0.38 0.08 162);
   /* Deep green */
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.497 0.135 146);
+  --sidebar-primary: oklch(0.46 0.11 162);
   /* Green */
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.95 0.02 85);
   /* Light gold */
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.90 0.01 90);
-  --sidebar-ring: oklch(0.497 0.135 146);
+  --sidebar-ring: oklch(0.46 0.11 162);
 }
 
 .dark {
@@ -108,7 +108,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.65 0.17 146);
+  --primary: oklch(0.63 0.14 162);
   /* Lighter green for dark */
   --primary-foreground: oklch(0.15 0 0);
   --secondary: oklch(0.269 0.02 85);
@@ -120,20 +120,20 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.65 0.17 146);
-  --chart-1: oklch(0.65 0.17 146);
-  --chart-2: oklch(0.78 0.14 85);
-  --chart-3: oklch(0.55 0.09 146);
+  --ring: oklch(0.63 0.14 162);
+  --chart-1: oklch(0.63 0.14 162);
+  --chart-2: oklch(0.815 0.155 82);
+  --chart-3: oklch(0.55 0.1 162);
   --chart-4: oklch(0.65 0.12 85);
-  --chart-5: oklch(0.42 0.06 146);
+  --chart-5: oklch(0.45 0.09 162);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.65 0.17 146);
+  --sidebar-primary: oklch(0.63 0.14 162);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.30 0.04 85);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.65 0.17 146);
+  --sidebar-ring: oklch(0.63 0.14 162);
 }
 
 @layer base {

@@ -224,7 +224,7 @@ export default function PengaturanPage() {
                     <div className="text-xs text-muted-foreground">
                       Nama Aplikasi
                     </div>
-                    <div className="font-medium">Tumang Admin</div>
+                    <div className="font-medium">Beringharjo Admin</div>
                   </div>
                   <div className="rounded-lg border p-3">
                     <div className="text-xs text-muted-foreground">Versi</div>
@@ -257,7 +257,7 @@ export default function PengaturanPage() {
                 </div>
                 <p className="text-sm text-muted-foreground">
                   Panel admin untuk mengelola data BMT, petugas, setoran, dan
-                  perangkat dalam sistem Tumang.
+                  perangkat dalam sistem Beringharjo.
                 </p>
               </div>
             </CardContent>
