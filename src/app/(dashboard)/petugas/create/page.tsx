@@ -23,11 +23,11 @@ import { apiPost, apiGet } from "@/lib/api";
 
 /* ---------- Schema — matches Rust CreatePetugasInput ---------- */
 const petugasSchema = z.object({
-  username: z.string().min(1, "Username wajib diisi"),
+  // username TIDAK diinput — otomatis = BMT ID + batch (mis. 0001+102 → 0001102)
   password: z.string().min(6, "Password minimal 6 karakter"),
   nama: z.string().min(1, "Nama wajib diisi"),
   imei: z.string().optional().default(""),
-  batch: z.string().optional().default(""),
+  batch: z.string().min(1, "Batch wajib diisi — username otomatis BMT ID + batch"),
   bmt_id: z.string().min(1, "BMT wajib dipilih"),
   kode_ao: z.string().optional().default(""),
   nomorhp: z.string().optional().default(""),
@@ -67,7 +67,6 @@ export default function PetugasCreatePage() {
   const router = useRouter();
 
   const [form, setForm] = useState<PetugasForm>({
-    username: "",
     password: "",
     nama: "",
     imei: "",
@@ -177,18 +176,23 @@ export default function PetugasCreatePage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
-            {/* Username */}
+            {/* Username (otomatis: BMT ID + Batch) */}
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
               <Input
                 id="username"
-                value={form.username}
-                onChange={(e) => handleChange("username", e.target.value)}
-                placeholder="Masukkan username"
+                readOnly
+                value={
+                  form.bmt_id && form.batch
+                    ? `${form.bmt_id}${form.batch}`
+                    : ""
+                }
+                placeholder="Otomatis dari BMT ID + Batch"
+                className="bg-muted font-mono"
               />
-              {errors.username && (
-                <p className="text-xs text-destructive">{errors.username}</p>
-              )}
+              <p className="text-xs text-muted-foreground">
+                Otomatis: BMT ID + Batch (mis. 0001 + 102 → 0001102)
+              </p>
             </div>
 
             {/* Password */}
@@ -319,8 +323,11 @@ export default function PetugasCreatePage() {
                 id="batch"
                 value={form.batch}
                 onChange={(e) => handleChange("batch", e.target.value)}
-                placeholder="Batch (opsional)"
+                placeholder="Nomor batch, mis. 102"
               />
+              {errors.batch && (
+                <p className="text-xs text-destructive">{errors.batch}</p>
+              )}
             </div>
 
             {/* Target */}

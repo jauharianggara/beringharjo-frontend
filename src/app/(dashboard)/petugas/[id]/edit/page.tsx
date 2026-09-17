@@ -353,6 +353,9 @@ export default function PetugasEditPage({
                 onChange={(e) => handleChange("batch", e.target.value)}
                 placeholder="Batch"
               />
+              <p className="text-xs text-muted-foreground">
+                Jika batch diubah, username otomatis mengikuti: BMT ID + Batch
+              </p>
             </div>
 
             {/* Target */}
