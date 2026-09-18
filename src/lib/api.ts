@@ -2,8 +2,8 @@ const BASE_URL = (() => {
   // Runtime detection: akses via domain publik baru -> pakai API publik
   if (typeof window !== "undefined") {
     const host = window.location.hostname;
-    if (host === "collector.beringharjo.jagodigital.online") {
-      return "https://api.beringharjo.jagodigital.online";
+    if (host === "collector-beringharjo.jagodigital.online") {
+      return "https://api-beringharjo.jagodigital.online";
     }
   }
   return process.env.NEXT_PUBLIC_API_URL || "http://localhost:8081";
