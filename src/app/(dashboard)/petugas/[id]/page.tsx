@@ -311,7 +311,7 @@ export default function PetugasDetailPage({
                     <TableRow>
                       <TableHead>ID</TableHead>
                       <TableHead>Tanggal</TableHead>
-                      <TableHead>Nasabah</TableHead>
+                      <TableHead>Anggota</TableHead>
                       <TableHead>Nominal</TableHead>
                       <TableHead>Status</TableHead>
                     </TableRow>

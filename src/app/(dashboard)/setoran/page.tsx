@@ -286,7 +286,7 @@ function SetoranListContent() {
             <TableRow>
               <TableHead className="w-[100px]">Actions</TableHead>
               <SortableTableHead label="ID" sortKey="id" currentSortKey={sortState.key} direction={sortState.direction} onSort={toggleSort} />
-              <SortableTableHead label="Nasabah" sortKey="nama_nasabah" currentSortKey={sortState.key} direction={sortState.direction} onSort={toggleSort} />
+              <SortableTableHead label="Anggota" sortKey="nama_nasabah" currentSortKey={sortState.key} direction={sortState.direction} onSort={toggleSort} />
               <SortableTableHead label="BMT" sortKey="bmt_id" currentSortKey={sortState.key} direction={sortState.direction} onSort={toggleSort} />
               <SortableTableHead label="Nominal" sortKey="nominal" currentSortKey={sortState.key} direction={sortState.direction} onSort={toggleSort} className="text-right" />
               <SortableTableHead label="Tanggal" sortKey="tanggal" currentSortKey={sortState.key} direction={sortState.direction} onSort={toggleSort} />

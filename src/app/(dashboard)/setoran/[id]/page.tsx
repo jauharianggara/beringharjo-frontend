@@ -116,7 +116,7 @@ export default function SetoranDetailPage({
   const infoFields = [
     { label: "ID", value: data?.id },
     { label: "Tanggal", value: data?.tanggal ? fmtDate(data.tanggal) : "-" },
-    { label: "Nama Nasabah", value: data?.nama_nasabah },
+    { label: "Nama Anggota", value: data?.nama_nasabah },
     { label: "Nomor Rekening", value: data?.nomor_rekening },
     {
       label: "Nominal",
