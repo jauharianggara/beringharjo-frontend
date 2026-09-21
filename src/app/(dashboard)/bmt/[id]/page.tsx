@@ -3,21 +3,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Eye, EyeOff, KeyRound, Loader2, Pencil, Plug } from "lucide-react";
+import { ArrowLeft, Loader2, Pencil, Plug } from "lucide-react";
+
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { apiGet, apiPost } from "@/lib/api";
 
 /* ---------- Types — matches Rust Bmt model ---------- */
@@ -41,13 +33,6 @@ interface BmtDetailResponse {
   item: BmtItem;
 }
 
-interface DecryptedDbCreds {
-  db_host: string;
-  db_database: string;
-  db_username: string;
-  db_password: string;
-}
-
 /* ---------- Page ---------- */
 export default function BmtDetailPage({
   params,
@@ -58,15 +43,6 @@ export default function BmtDetailPage({
 
   const [data, setData] = useState<BmtItem | null>(null);
   const [loading, setLoading] = useState(true);
-
-  // Decrypt password dialog
-  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
-  const [password, setPassword] = useState("");
-  const [verifying, setVerifying] = useState(false);
-
-  // Decrypted values
-  const [decrypted, setDecrypted] = useState<DecryptedDbCreds | null>(null);
-  const [showDecrypted, setShowDecrypted] = useState(false);
 
   useEffect(() => {
     async function fetchDetail() {
@@ -81,34 +57,6 @@ export default function BmtDetailPage({
     }
     fetchDetail();
   }, [id]);
-
-  async function handleDecrypt() {
-    if (!password) {
-      toast.error("Masukkan password");
-      return;
-    }
-    setVerifying(true);
-    try {
-      const creds = await apiPost<DecryptedDbCreds>(
-        `/api/admin/bmt/${id}/decrypt-db`,
-        { password }
-      );
-      setDecrypted(creds);
-      setShowDecrypted(true);
-      setShowPasswordDialog(false);
-      setPassword("");
-      toast.success("Kredensial berhasil didekripsi");
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Gagal mendekripsi");
-    } finally {
-      setVerifying(false);
-    }
-  }
-
-  function handleHideDecrypted() {
-    setShowDecrypted(false);
-    setDecrypted(null);
-  }
 
   // Test DB connection state
   const [testing, setTesting] = useState(false);
@@ -232,35 +180,11 @@ export default function BmtDetailPage({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <CardTitle>Database Connection</CardTitle>
-              {!showDecrypted && (
-                <span className="inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
-                  Encrypted
-                </span>
-              )}
-              {showDecrypted && (
-                <span className="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
-                  Decrypted
-                </span>
-              )}
+              <span className="inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+                Encrypted
+              </span>
             </div>
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={showDecrypted ? handleHideDecrypted : () => setShowPasswordDialog(true)}
-              >
-                {showDecrypted ? (
-                  <>
-                    <EyeOff className="mr-1 size-4" />
-                    Sembunyikan
-                  </>
-                ) : (
-                  <>
-                    <Eye className="mr-1 size-4" />
-                    Tampilkan
-                  </>
-                )}
-              </Button>
               <Button
                 variant="outline"
                 size="sm"
@@ -296,19 +220,15 @@ export default function BmtDetailPage({
             <>
               <div className="grid gap-3 sm:grid-cols-2">
                 {[
-                  { label: "DB Host", encrypted: data?.db_host, decrypted: decrypted?.db_host },
-                  { label: "DB Database", encrypted: data?.db_database, decrypted: decrypted?.db_database },
-                  { label: "DB Username", encrypted: data?.db_username, decrypted: decrypted?.db_username },
-                  { label: "DB Password", encrypted: data?.db_password, decrypted: decrypted?.db_password },
+                  { label: "DB Host", encrypted: data?.db_host },
+                  { label: "DB Database", encrypted: data?.db_database },
+                  { label: "DB Username", encrypted: data?.db_username },
+                  { label: "DB Password", encrypted: data?.db_password },
                 ].map((field) => (
                   <div key={field.label} className="flex flex-col gap-1">
                     <span className="text-sm font-medium text-muted-foreground">{field.label}</span>
                     <div className="text-sm font-mono break-all">
-                      {showDecrypted && field.decrypted
-                        ? field.decrypted
-                        : field.encrypted
-                          ? "••••••••••••••••"
-                          : "-"}
+                      {field.encrypted ? "••••••••••••••••" : "-"}
                     </div>
                   </div>
                 ))}
@@ -343,54 +263,6 @@ export default function BmtDetailPage({
         </CardContent>
       </Card>
 
-      {/* Delete Confirmation Dialog */}
-      {/* Password Verification Dialog */}
-      <Dialog open={showPasswordDialog} onOpenChange={setShowPasswordDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <KeyRound className="size-5" />
-              Verifikasi Password
-            </DialogTitle>
-            <DialogDescription>
-              Masukkan password Anda untuk mendekripsi kredensial database.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="py-2">
-            <Input
-              type="password"
-              placeholder="Masukkan password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleDecrypt()}
-              autoFocus
-              disabled={verifying}
-            />
-          </div>
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => {
-                setShowPasswordDialog(false);
-                setPassword("");
-              }}
-              disabled={verifying}
-            >
-              Batal
-            </Button>
-            <Button onClick={handleDecrypt} disabled={verifying || !password}>
-              {verifying ? (
-                <>
-                  <Loader2 className="mr-1 size-4 animate-spin" />
-                  Memverifikasi...
-                </>
-              ) : (
-                "Verifikasi"
-              )}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
