@@ -137,10 +137,14 @@ function SetoranListContent() {
       try {
         const [bmtRes, ptRes] = await Promise.all([
           apiGet<BmtListResponse>("/api/admin/bmt?per_page=100"),
-          apiGet<PetugasListResponse>("/api/admin/petugas?per_page=100"),
+          apiGet<PetugasListResponse>("/api/admin/petugas?per_page=500"),
         ]);
         setBmtOptions(bmtRes.items ?? []);
-        setPetugasOptions(ptRes.items ?? []);
+        setPetugasOptions(
+          [...(ptRes.items ?? [])].sort((a, b) =>
+            (a.nama ?? "").localeCompare(b.nama ?? "", "id")
+          )
+        );
       } catch {
         // silently fail for filter options
       }
