@@ -5,6 +5,9 @@ const BASE_URL = (() => {
     if (host === "collector-beringharjo.jagodigital.online") {
       return "https://api-beringharjo.jagodigital.online";
     }
+    if (host === "collector.beringharjo.synergyinfinity.id") {
+      return "https://api.beringharjo.synergyinfinity.id";
+    }
   }
   return process.env.NEXT_PUBLIC_API_URL || "http://localhost:8081";
 })();
